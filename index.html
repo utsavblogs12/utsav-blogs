@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="description" content="Utsav Blogs - Coding, Creativity, and Digital Growth">
+<meta name="keywords" content="utsav, blog, coding, html, javascript, firebase, digital marketing">
+<meta name="author" content="Utsav Das">
+<meta property="og:title" content="Utsav Blogs">
+<meta property="og:description" content="A journey of code, creativity, and learning.">
+<meta property="og:image" content="images/header.jpg">
+<meta property="og:url" content="https://utsav-blog.netlify.app">
+<meta name="twitter:card" content="summary_large_image">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Utsav Blogs - Personal coding and digital marketing journey.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utsav Blogs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="js/script.js" defer></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXX');
+</script>
+<!-- End Google Analytics -->
+
+</head>
+<body>
+    <header>
+        <h1>Welcome to Utsav Blogs</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+
+<aside class="ad-sidebar">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-2116390657953846"
+       data-ad-slot="1234567891"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+
+        <input type="text" id="searchBox" onkeyup="searchPosts()" placeholder="Search blog posts..." aria-label="Search blog posts">
+        <button id="toggleBtn">Dark Mode</button>
+
+        <section id="blog-posts">
+            <article data-aos="fade-up">
+                <h2><a href="posts/my-first-post.html">My First Blog Post</a></h2>
+                <p>A detailed look into my first steps in web development and blogging.</p>
+            </article>
+            <article data-aos="fade-up" data-aos-delay="100">
+                <h2>How I Use Digital Marketing</h2>
+                <p>Here’s how I apply SEO and social tools to boost my blog’s reach.</p>
+            </article>
+        </section>
+
+        <section id="interaction-box" aria-label="Post interaction area">
+            <button id="likeBtn" aria-label="Like this post">👍 Like (<span id="likeCount">0</span>)</button>
+            <button onclick="sharePost()" aria-label="Share this post">🔗 Share</button>
+            <button id="subscribeBtn" aria-label="Subscribe to blog">Subscribe</button>
+            <h3>Subscribe To My Blog</h3>
+    <form action="https://formspree.io/f/xovlebyl" method="POST">
+        <input type="email" name="email" placeholder="Enter your email..." required>
+        <button type="submit">Subscribe</button>
+    </form>
+    <h3>Comments</h3>
+            <textarea id="commentInput" placeholder="Write your comment..." aria-label="Write your comment"></textarea>
+            <button onclick="addComment()">Post</button>
+            <ul id="commentList" aria-live="polite"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Utsav Blogs</p>
+        <p>Follow me on: 
+            <a href="https://www.youtube.com/@utsavvlogs0">YouTube</a>
+            <a href="https://www.instagram.com/utsavdas9819/">Instagram</a>
+            <a href="https://www.tiktok.com/@utsav46y">Tiktok</a>
+        </p>
+    
+<div class="ad-footer">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-2116390657953846"
+       data-ad-slot="1234567892"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+</footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCcQaB8fX2o0_kQh8pY9vzyX6uUfYk1j-A",
+  authDomain: "utsav-blogs.firebaseapp.com",
+  projectId: "utsav-blogs",
+  storageBucket: "utsav-blogs.firebasestorage.app",
+  messagingSenderId: "935516206475",
+  appId: "1:935516206475:web:5cc3d2a0d6fe6b20456b8e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const blogSection = document.getElementById("blog-posts");
+const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+
+onSnapshot(q, (snapshot) => {
+  blogSection.innerHTML = "";
+  snapshot.forEach((doc) => {
+    const post = doc.data();
+    const article = document.createElement("article");
+    article.innerHTML = `
+      <h2>${post.title}</h2>
+      ${post.image ? `<img src="${post.image}" alt="Post image" style="max-width:100%;height:auto;" />` : ""}
+      <p>${post.body}</p>
+    `;
+    blogSection.appendChild(article);
+  });
+});
+</script>
+
+
+<script>
+  const toggleBtn = document.getElementById("toggleBtn");
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+</script>
+
+
+  <section>
+    <h2>Subscribe to our newsletter</h2>
+    <form id="newsletterForm">
+      <input type="email" id="subscriberEmail" placeholder="Your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+
+<!-- Placeholder login notice -->
+
+
+</body>
+</html>

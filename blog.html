@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="module" src="js/blog.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <main>
+    <h1 id="postTitle">Loading...</h1>
+    <img id="postImage" style="max-width: 100%; display: none;" />
+    <article id="postBody"></article>
+  </main>
+
+<div id="engagement" style="margin-top:20px;">
+  <button id="likeBtn">👍 Like (<span id="likeCount">0</span>)</button>
+  <div id="shareButtons">
+    <p>Share:</p>
+    <a href="#" id="shareFacebook" target="_blank">Facebook</a> |
+    <a href="#" id="shareTwitter" target="_blank">X (Twitter)</a> |
+    <a href="#" id="shareWhatsApp" target="_blank">WhatsApp</a>
+  </div>
+</div>
+
+</body>
+</html>

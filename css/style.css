@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    color: darkviolet;
+    line-height: 1.6;
+}
+
+header, footer {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: darkviolet;
+    text-align: center;
+    text-shadow: 10px 10px 4px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+header::before, footer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+header *,
+footer * {
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    background-image: url("../images/header.jpg");
+    padding: 0em 0em;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+footer {
+    background-image: url("../images/footer.jpg");
+    padding: 0em 0em;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+nav a {
+    color: darkviolet;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: lightgreen;
+}
+
+main {
+    padding: 0px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+#interaction-box {
+    padding: 10px;
+    background:lightblue;
+    margin-top: 20px;
+}
+.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+.dark-mode a {
+    color: lightgreen;
+}
+
+.dark-mode a:hover {
+    color: darkviolet;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode p,
+.dark-mode li {
+    color: lightgreen;
+}
+article {
+    padding: 1em;
+    margin: 1em 0;
+    border-left: 5px solid #2196F3;
+}
+@media (max-width: 600px) {
+  header, footer {
+    padding: 2em 1em;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 16px;
+  }
+
+  #interaction-box {
+    font-size: 0.9em;
+  }
+
+  article {
+    padding: 0.8em;
+  }
+}
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Dark mode support */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+body.dark-mode a {
+  color: #90caf9;
+}
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+}

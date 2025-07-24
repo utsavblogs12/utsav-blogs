@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://utsav-blog.netlify.app/sitemap.xml
